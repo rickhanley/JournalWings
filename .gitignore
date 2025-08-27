@@ -1,0 +1,41 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+*.manifest
+*.spec
+
+# Virtual environments
+.venv/
+venv/
+env/
+.uv/
+
+# Build artifacts (keep only bin/)
+build/
+dist/
+
+# Keep compiled exe in bin/
+!bin/
+!bin/**
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Excel temp/autosave files
+~$*.xls*
+*.bak
+*.tmp
+
+# Logs
+*.log
