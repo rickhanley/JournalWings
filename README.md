@@ -18,7 +18,6 @@ To the structured data required for a clean journal move on the ERP system whils
 
 Prior to JournalWings, journal preparation was a fully manual and error-prone task. Transaction data had to be manually restructured to fit the format required by Oracle’s WebADI upload sheet. This involved a time-consuming process of:
 
-* Reformatting each line of data
 * Manually copying and pasting into the correct cells
 * Looking up context-specific values (like natural accounts or unit codes)
 * Double-checking accuracy before upload
