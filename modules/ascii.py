@@ -1,4 +1,4 @@
-class ShowHeader():
+class ShowHeader:
     def __init__(self):
           pass
     # https://www.asciiart.eu/text-to-ascii-art
@@ -20,7 +20,7 @@ class ShowHeader():
                                     | |/ |/ / / / / / /_/ (__  ) 
                                     |__/|__/_/_/ /_/\__, /____/  
                                                    /____/                                                           
-                                    Journal automation for grants                     
+                                    Journal automation                     
 
     ╚════════════════════════════════════════════════════════════════════════╝
     """

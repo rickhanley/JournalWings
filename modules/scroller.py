@@ -1,5 +1,6 @@
 import os
 
+
 def scroller(text):
     lines = text.splitlines()
     height = os.get_terminal_size().lines - 2

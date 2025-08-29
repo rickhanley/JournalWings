@@ -1,3 +1,3 @@
 class Totals:
     def __init__(self):
-        self.summary_string = ''
+        self.summary_string = ""

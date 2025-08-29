@@ -1,4 +1,4 @@
-# AppContext is holding COMMON objects in one place. 
+# AppContext is holding COMMON objects in one place.
 # Think of it like a box / wrapper
 # We create the class AppContenxt. We fill it with other
 # classes. Then when we initiliase AppContext, all
@@ -11,12 +11,12 @@
 # early on that may be required for set-up or data prep
 
 
-from modules.filemanager import FileManager
 from modules.datamanager import DataManager
-# from modules.journalhelper import JournalHelpers
-from modules.userinput import UserInput
+from modules.filemanager import FileManager
 from modules.totals import Totals
 
+# from modules.journalhelper import JournalHelpers
+from modules.userinput import UserInput
 
 
 class AppContext:

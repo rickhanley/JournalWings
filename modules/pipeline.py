@@ -2,20 +2,20 @@
 # Run is instantiating AppContext. All classes assigned to AppContext
 # will also be instantiated when run is called. Notice we immediatelt call
 # bootstrap on AppCOntext, so it is instatiated and bootstrap fired all in
-# one go. 
+# one go.
+
 
 
 from modules.appcontext import AppContext
 from modules.ascii import ShowHeader
-from modules.pipeline_methods import p_to_p, p_to_gl, exps
 from modules.endnotes import endnotes
+from modules.pipeline_methods import exps, p_to_gl, p_to_p
 from modules.scroller import scroller
-import time
 
 pipeline_dict = {
     "1": p_to_p,
     "2": p_to_gl,
-    "3": exps
+    "3": exps,
 }
 
 def run():
@@ -49,7 +49,7 @@ def dispatch(ctx, user_responses):
 
 
 
-        
+
 
 
 

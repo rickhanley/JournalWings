@@ -2,9 +2,10 @@
 # catch any exceptions
 
 
-from modules.pipeline import run
-import traceback
 import sys
+import traceback
+
+from modules.pipeline import run
 
 if __name__ == "__main__":
     try:
@@ -20,10 +21,10 @@ if __name__ == "__main__":
         print(f"{e}")
         input("     Press Enter to close this window...")
         sys.exit(1)
-    except KeyboardInterrupt as e:
+    except KeyboardInterrupt:
         sys.exit(1)
-    except Exception as e:
-        print(f"[!] Unexpected error: ")
+    except Exception:
+        print("[!] Unexpected error: ")
         traceback.print_exc()
         input("     Press Enter to close this window...")
         sys.exit(1)

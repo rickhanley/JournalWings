@@ -10,9 +10,9 @@
 
 import time
 
+
 def p_to_p(ctx):
-    """
-    Runs the logical steps to process the data on a project to project basis
+    """Runs the logical steps to process the data on a project to project basis
     input: ctx - shared app context containing managers and user_inputs
     side effects: Creates and saves the finished journal uploader
     output: None
@@ -23,7 +23,7 @@ def p_to_p(ctx):
     app = ctx.fm.app
     if not app:
         raise RuntimeError("    [!] failed to get webadi reference")
-    
+
     try:
         credit_numbers, debit_numbers = None, None
         ctx.journal = ctx.fm.open_journal_with_xlwings(ctx.paths, app)
@@ -33,13 +33,13 @@ def p_to_p(ctx):
         credit_rows = ctx.dm.build_credit_rows(date_formatted_filtered_data, ctx)
         credit_numbers = ctx.dm.financial_column_data_only(credit_rows)
         ctx.dm.write_data_to_webadi(credit_rows, ctx.journal)
-        dest_project = ctx.ui.user_responses['dest_proj']
-        dest_task = ctx.ui.user_responses['dest_task']
+        dest_project = ctx.ui.user_responses["dest_proj"]
+        dest_task = ctx.ui.user_responses["dest_task"]
         debit_rows = ctx.dm.build_debit_rows(credit_rows, ctx.data, dest_project=dest_project, dest_task=dest_task)
         debit_numbers = ctx.dm.financial_column_data_only(debit_rows)
         ctx.dm.write_data_to_webadi(debit_rows, ctx.journal, False)
-        ctx.dm.write_unit_header(ctx.ui.user_responses['dest_proj'], ctx.journal)
-        ctx.dm.write_uploader_ref(ctx.ui.user_responses['dest_proj'], ctx.journal)
+        ctx.dm.write_unit_header(ctx.ui.user_responses["dest_proj"], ctx.journal)
+        ctx.dm.write_uploader_ref(ctx.ui.user_responses["dest_proj"], ctx.journal)
         ctx.dm.copy_data_to_journal(ctx)
         ctx.journal.save()
         try:
@@ -64,8 +64,8 @@ def p_to_p(ctx):
                 print(f"    [!] Failed to quit Excel app: {e}")
             ctx.fm.app = None
 
-        
-    
+
+
 
 def p_to_gl(ctx):
     ctx.start_time = time.perf_counter()
@@ -81,12 +81,12 @@ def p_to_gl(ctx):
         date_formatted_filtered_data = ctx.dm.datetimes_to_strings(filtered_data)
         credit_rows = ctx.dm.build_credit_rows(date_formatted_filtered_data, ctx)
         credit_numbers = ctx.dm.financial_column_data_only(credit_rows)
-        
+
         ctx.dm.write_data_to_webadi(credit_rows, ctx.journal)
-        ctx.dm.write_unit_header(ctx.ui.user_responses['dest_proj'], ctx.journal)
-        ctx.dm.write_uploader_ref(ctx.ui.user_responses['dest_proj'], ctx.journal)
+        ctx.dm.write_unit_header(ctx.ui.user_responses["dest_proj"], ctx.journal)
+        ctx.dm.write_uploader_ref(ctx.ui.user_responses["dest_proj"], ctx.journal)
         ctx.dm.copy_data_to_journal(ctx)
-        
+
         ctx.journal.save()
         try:
             ctx.fm.file_rename(ctx.paths[0], ctx)
@@ -109,8 +109,8 @@ def p_to_gl(ctx):
             except Exception as e:
                 print(f"    [!] Failed to quit Excel app: {e}")
             ctx.fm.app = None
-        
-        
+
+
 
 def exps(ctx):
     ctx.start_time = time.perf_counter()
@@ -118,9 +118,9 @@ def exps(ctx):
     app = ctx.fm.app
     if not app:
         raise RuntimeError("    [!] failed to get webadi reference")
-    try:  
+    try:
         credit_numbers, debit_numbers = None, None
-        ctx.journal = ctx.fm.open_journal_with_xlwings(ctx.paths, app)        
+        ctx.journal = ctx.fm.open_journal_with_xlwings(ctx.paths, app)
         ctx.dm.clean_journal(ctx.journal)
         filtered_data = ctx.dm.filter_data_to_journal_headings(ctx.data)
         date_formatted_filtered_data = ctx.dm.datetimes_to_strings(filtered_data)
@@ -129,7 +129,7 @@ def exps(ctx):
         credit_numbers = ctx.dm.financial_column_data_only(credit_rows)
         ctx.dm.write_data_to_webadi(credit_rows, ctx.journal)
         project_column, task_column = ctx.dm.get_project_and_task_columns_for_exp_change(filtered_data)
-        chosen_pipeline = str(ctx.ui.user_responses['pipeline_choice']).strip()
+        chosen_pipeline = str(ctx.ui.user_responses["pipeline_choice"]).strip()
         debit_rows = ctx.dm.build_debit_rows(credit_rows, ctx.data, project_col=project_column, task_col=task_column, pipeline=chosen_pipeline)
         debit_numbers = ctx.dm.financial_column_data_only(debit_rows)
         ctx.dm.write_data_to_webadi(debit_rows, ctx.journal, False)
@@ -141,7 +141,7 @@ def exps(ctx):
             ctx.fm.file_rename(ctx.paths[0], ctx)
         except Exception as e:
             print(f"    [!] Failed to copy / rename journal: {e}")
-        
+
         ctx.end_time = time.perf_counter()
         ctx.tt.summary_string = ctx.dm.summary_info(credit_numbers, ctx, debit_numbers)
 
@@ -159,5 +159,4 @@ def exps(ctx):
             except Exception as e:
                 print(f"    [!] Failed to quit Excel app: {e}")
             ctx.fm.app = None
-        
-        
+

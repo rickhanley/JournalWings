@@ -20,5 +20,5 @@ mappings = {
       "Quantity": "Proj Func Burdened Cost",
       "Expnd Comment": "Comment",
       "Trans Id": "Trans Id",
-  }
+  },
 }

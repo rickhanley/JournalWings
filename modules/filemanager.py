@@ -1,10 +1,13 @@
-import sys, os, shutil
-from pathlib import Path
-from openpyxl import load_workbook
-import xlwings as xw
-from modules.customexceptions import PathResolutionError
+import os
+import shutil
+import sys
 from datetime import datetime
+from pathlib import Path
 
+import xlwings as xw
+from openpyxl import load_workbook
+
+from modules.customexceptions import PathResolutionError
 
 
 class FileManager:
@@ -15,7 +18,7 @@ class FileManager:
         try:
             self.app = xw.App(visible=False)
             return self.app
-        except Exception as e:
+        except Exception:
             raise RuntimeError("    [!] Can't obtain xlwings object")
 
     def get_base_path(self):
@@ -27,7 +30,7 @@ class FileManager:
                 base_path = os.path.dirname(os.path.abspath(sys.argv[0]))
         except Exception as e:
             raise PathResolutionError(
-                f"\n    [!] Error: Could not determine base path.\n    Details: {e}"
+                f"\n    [!] Error: Could not determine base path.\n    Details: {e}",
             ) from e
         return base_path
 
@@ -59,7 +62,7 @@ class FileManager:
             raise ValueError(
                 f"\n    [!] File loading failed.\n"
                 f"    Please ensure your working folder contains exactly one .xlsm file and one .xlsx file.\n"
-                f"    Details: {e}\n"
+                f"    Details: {e}\n",
             )
         return journal_path, data_path
 
@@ -71,7 +74,7 @@ class FileManager:
             except PermissionError:
                 raise ValueError(
                     f"\n    [!] Error: The file '{os.path.basename(path)}' is currently open.\n"
-                    f"    Please close the file and try Journal Wings again.\n"
+                    f"    Please close the file and try Journal Wings again.\n",
                 )
         return True
 
@@ -80,12 +83,12 @@ class FileManager:
             data_workbook = load_workbook(data_path, data_only=True)
         except FileNotFoundError:
             raise ValueError(
-                    f"\n    [!] Error: Could not load workbook\n"
-                    f"    \n"
+                    "\n    [!] Error: Could not load workbook\n"
+                    "    \n",
                 )
         except PermissionError:
             raise ValueError(
-                f"\n    [!] Error: File is currently open or locked — please close it.\n"
+                "\n    [!] Error: File is currently open or locked — please close it.\n",
             )
         return data_workbook
 
@@ -98,7 +101,7 @@ class FileManager:
             return journal_object
         except Exception as e:
             raise RuntimeError(f"\n    [!] Error: Failed to open journal with xlwings: {e}\n")
-        
+
     def file_rename(self, file, ctx):
         try:
             uploader_ref = ctx.dm.uploader_ref
@@ -115,7 +118,7 @@ class FileManager:
             print(f"[!] Error during file copy: {e}")
 
 
-        
+
     def close_journal_xlwings(self, journal):
         try:
             if journal is not None:
