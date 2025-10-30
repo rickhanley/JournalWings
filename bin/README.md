@@ -1,11 +1,11 @@
 # JournalWings Executable
 
-This folder contains a **prebuilt executable** version of JournalWings for demonstration.
+This folder contains example data for JournalWings for demonstration purposes.
+The JournalWings.exe is availabe under rleases.
 
 ---
 
 ## 📦 Contents
-- `JournalWings.exe` — the executable program  
 - `data.xlsx` — sample input data  
 - `journal.xlsm` — journal template  
 
