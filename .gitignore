@@ -18,9 +18,11 @@ env/
 build/
 dist/
 
-# Keep compiled exe in bin/
+# Keep bin directory (for sample/test files)
 !bin/
 !bin/**
+# But ignore compiled executables except sample/test data
+bin/*.exe
 
 # IDE/editor
 .vscode/
