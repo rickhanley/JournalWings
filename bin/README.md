@@ -1,7 +1,7 @@
 # JournalWings Executable
 
 This folder contains example data for JournalWings for demonstration purposes.
-The JournalWings.exe is availabe under rleases.
+The JournalWings.exe is availabe under releases.
 
 ---
 
