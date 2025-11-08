@@ -1,0 +1,43 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+*.manifest
+*.spec
+
+# Virtual environments
+.venv/
+venv/
+env/
+.uv/
+
+# Build artifacts (keep only bin/)
+build/
+dist/
+
+# Keep bin directory (for sample/test files)
+!bin/
+!bin/**
+# But ignore compiled executables except sample/test data
+bin/*.exe
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Excel temp/autosave files
+~$*.xls*
+*.bak
+*.tmp
+
+# Logs
+*.log
